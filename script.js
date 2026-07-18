@@ -28,7 +28,7 @@ function switchTab(sectionName) {
     document.getElementById('link-' + sectionName).classList.add('active');
 }
 
-// REAL LIVE ADVANCED OPEN AI NETWORKING MODULE
+// ULTRA-STABLE DISTRIBUTED AI PROCESSING NODE
 async function sendChatMessage() {
     const inputElement = document.getElementById('user-chat-input');
     const chatBox = document.getElementById('chat-box-display');
@@ -36,29 +36,68 @@ async function sendChatMessage() {
 
     if (userText === "") return;
 
-    // 1. Post User Text to the window
     chatBox.innerHTML += `<p class="user-msg"><strong>You:</strong> ${userText}</p>`;
     inputElement.value = ""; 
     chatBox.scrollTop = chatBox.scrollHeight; 
 
-    // 2. Display a temporary "Thinking..." bubble
     const loadingId = "msg-" + Date.now();
     chatBox.innerHTML += `<p class="bot-msg" id="${loadingId}">🤖 <strong>Core:</strong> Core system generating intelligent response...</p>`;
     chatBox.scrollTop = chatBox.scrollHeight;
 
     try {
-        // 3. Directly target a raw open text inference pipeline
-        const url = "https://pollinations.ai" + encodeURIComponent(userText) + "?system=You are the ultra-advanced AI core of Siddharth's BCA Portal. Act exactly like ChatGPT or Gemini. Be highly conversational, extremely smart, and helpful.";
-        const response = await fetch(url);
-        
-        if (!response.ok) throw new Error("Network offline");
-        const aiText = await response.text();
+        // Step A: Request handshake token clearance
+        const initResponse = await fetch("https://duckduckgo.com", {
+            headers: { "x-vqd-accept": "1" }
+        });
+        const vqdToken = initResponse.headers.get("x-vqd-token");
 
-        // 4. Overwrite "Thinking..." with real AI generated response text block
-        document.getElementById(loadingId).innerHTML = `🤖 <strong>Core:</strong> ${aiText.trim()}`;
+        if (!vqdToken) throw new Error("Handshake failed");
+
+        // Step B: Dispatch request payload straight to the server node cluster
+        const chatResponse = await fetch("https://duckduckgo.com", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "x-vqd-token": vqdToken
+            },
+            body: JSON.stringify({
+                model: "gpt-4o-mini",
+                messages: [
+                    { role: "system", content: "You are the highly advanced AI core of Siddharth's BCA Portal. Act exactly like ChatGPT or Gemini. Be extremely smart and conversational." },
+                    { role: "user", content: userText }
+                ]
+            })
+        });
+
+        const textData = await chatResponse.text();
+        let fullAIResponse = "";
+        
+        // Step C: Clean up incoming network lines into clear human language text strings
+        const lines = textData.split("\n");
+        for (const line of lines) {
+            if (line.startsWith("data: ")) {
+                const dataStr = line.substring(6).trim();
+                if (dataStr === "[DONE]") break;
+                try {
+                    const parsed = JSON.parse(dataStr);
+                    if (parsed.message) fullAIResponse += parsed.message;
+                } catch (e) { }
+            }
+        }
+
+        if (fullAIResponse.trim() === "") throw new Error("Empty buffer payload");
+
+        document.getElementById(loadingId).innerHTML = `🤖 <strong>Core:</strong> ${fullAIResponse.trim()}`;
         
     } catch (error) {
-        document.getElementById(loadingId).innerHTML = `🤖 <strong>Core:</strong> API gateway routing error. Please re-send your command loop input parameters.`;
+        // Robust secondary fallback system if networks fluctuate
+        try {
+            const secondaryResponse = await fetch("https://pollinations.ai" + encodeURIComponent(userText));
+            const backupText = await secondaryResponse.text();
+            document.getElementById(loadingId).innerHTML = `🤖 <strong>Core:</strong> ${backupText.trim()}`;
+        } catch (fail) {
+            document.getElementById(loadingId).innerHTML = `🤖 <strong>Core:</strong> Neural cluster synchronization pending. Please re-send your message string parameter layer.`;
+        }
     }
     
     chatBox.scrollTop = chatBox.scrollHeight; 
