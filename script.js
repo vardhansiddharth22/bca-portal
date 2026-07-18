@@ -28,7 +28,7 @@ function switchTab(sectionName) {
     document.getElementById('link-' + sectionName).classList.add('active');
 }
 
-// STABLE ONLINE LIVE AI MODEL API BRIDGE
+// REAL LIVE ADVANCED OPEN AI NETWORKING MODULE
 async function sendChatMessage() {
     const inputElement = document.getElementById('user-chat-input');
     const chatBox = document.getElementById('chat-box-display');
@@ -36,28 +36,29 @@ async function sendChatMessage() {
 
     if (userText === "") return;
 
-    // 1. Display User Message
+    // 1. Post User Text to the window
     chatBox.innerHTML += `<p class="user-msg"><strong>You:</strong> ${userText}</p>`;
     inputElement.value = ""; 
     chatBox.scrollTop = chatBox.scrollHeight; 
 
-    // 2. Display "Thinking..." State
+    // 2. Display a temporary "Thinking..." bubble
     const loadingId = "msg-" + Date.now();
-    chatBox.innerHTML += `<p class="bot-msg" id="${loadingId}">🤖 <strong>Core:</strong> Core system generating intelligence response...</p>`;
+    chatBox.innerHTML += `<p class="bot-msg" id="${loadingId}">🤖 <strong>Core:</strong> Core system generating intelligent response...</p>`;
     chatBox.scrollTop = chatBox.scrollHeight;
 
     try {
-        // 3. Connect directly to a live, unblocked open-source conversational AI node
-        const response = await fetch(`https://pollinations.ai{encodeURIComponent(userText)}?system=You are the ultra-advanced AI core of Siddharth's BCA Portal. Act exactly like ChatGPT or Gemini. Be highly conversational, extremely smart, and helpful.`);
+        // 3. Directly target a raw open text inference pipeline
+        const url = "https://pollinations.ai" + encodeURIComponent(userText) + "?system=You are the ultra-advanced AI core of Siddharth's BCA Portal. Act exactly like ChatGPT or Gemini. Be highly conversational, extremely smart, and helpful.";
+        const response = await fetch(url);
         
-        if (!response.ok) throw new Error("API Offline");
+        if (!response.ok) throw new Error("Network offline");
         const aiText = await response.text();
 
-        // 4. Output the real-time AI answer to the dashboard panel
+        // 4. Overwrite "Thinking..." with real AI generated response text block
         document.getElementById(loadingId).innerHTML = `🤖 <strong>Core:</strong> ${aiText.trim()}`;
         
     } catch (error) {
-        document.getElementById(loadingId).innerHTML = `🤖 <strong>Core:</strong> Connection failed. Secure terminal blocked by browser offline policy. Please upload your project to GitHub to bypass this.`;
+        document.getElementById(loadingId).innerHTML = `🤖 <strong>Core:</strong> API gateway routing error. Please re-send your command loop input parameters.`;
     }
     
     chatBox.scrollTop = chatBox.scrollHeight; 
