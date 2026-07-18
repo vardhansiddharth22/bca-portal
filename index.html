@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siddharth's BCA Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVIGATION MENU -->
+    <nav class="navbar">
+        <div class="nav-logo">BCA_Portal//</div>
+        <ul class="nav-links">
+            <li><a href="#" id="link-home" class="active" onclick="switchTab('home')">Home</a></li>
+            <li><a href="#" id="link-projects" onclick="switchTab('projects')">Projects</a></li>
+            <li><a href="#" id="link-labs" onclick="switchTab('labs')">AI Labs</a></li>
+        </ul>
+    </nav>
+
+    <!-- HOME SECTION -->
+    <div id="sec-home" class="main-container portal-section">
+        <h1 class="glow-text">Siddharth's BCA Portal</h1>
+        <p class="subtitle">Welcome to my very first web development interface layout.</p>
+        <button id="activate-btn" onclick="activateAICore()">Activate AI Core</button>
+
+        <div id="ai-console" class="console-container hidden">
+            <div class="console-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="console-title">SYSTEM STATUS: ACTIVE</span>
+            </div>
+            <div class="console-body">
+                <p class="typing-text">> Initializing BCA Portal Core Protocol...</p>
+                <p class="typing-text">> Loading database modules... SUCCESS.</p>
+                <p class="typing-text">> Ready for user input. Welcome, Siddharth.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROJECTS SECTION -->
+    <div id="sec-projects" class="main-container portal-section hidden">
+        <h1 class="glow-text">My Projects</h1>
+        <p class="subtitle">An archive of web applications built during my BCA journey.</p>
+        
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="card-status status-online">ACTIVE</div>
+                <h3>Python Core Sandbox</h3>
+                <p>An online script runner optimized to test object-oriented data streams and clean logic algorithms directly inside a terminal portal layout.</p>
+                <span class="card-tag">Python 3</span>
+                <span class="card-tag">Compiler</span>
+            </div>
+
+            <div class="project-card">
+                <div class="card-status status-online">ACTIVE</div>
+                <h3>Dynamic Interface Layout</h3>
+                <p>This master single-page setup showcasing structural DOM routing, neon text animations, glassmorphism headers, and event hooks.</p>
+                <span class="card-tag">HTML5</span>
+                <span class="card-tag">CSS Grid</span>
+                <span class="card-tag">Vanilla JS</span>
+            </div>
+
+            <div class="project-card">
+                <div class="card-status status-pending">PENDING</div>
+                <h3>Database Management Node</h3>
+                <p>An administrative system built to structure table arrays, query keys, and manage transactional inputs across academic portal logs.</p>
+                <span class="card-tag">SQL</span>
+                <span class="card-tag">Relational Database</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI LABS SECTION (With Interactive Chat Module) -->
+    <div id="sec-labs" class="main-container portal-section hidden">
+        <h1 class="glow-text">AI Labs Sandbox</h1>
+        <p class="subtitle">Advanced algorithms, API nodes, and automated neural structures.</p>
+        
+        <!-- Interactive Interface -->
+        <div class="chat-container">
+            <div class="chat-box" id="chat-box-display">
+                <p class="bot-msg">🤖 <strong>Core:</strong> Secure terminal line online. Type a prompt command below to begin testing interface response loops.</p>
+            </div>
+            <div class="chat-input-row">
+                <input type="text" id="user-chat-input" placeholder="Type a command or message..." onkeydown="if(event.key === 'Enter') sendChatMessage()">
+                <button onclick="sendChatMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
